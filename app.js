@@ -186,13 +186,17 @@ closeBtn.addEventListener("click", () => {
 
 function creerModal(idProduitClique, tableauDeproduit) {
 
-console.log(idProduitClique)
+    console.log(idProduitClique)
+
 
     tableauDeproduit.forEach(produit => {
         console.log(produit.id)
 
-        /*if(produit.id === idProduitClique) {
-            
+        if (produit.id === Number(idProduitClique)) {
+
+            console.log("yo")
+
+
             // Créer un élément modal
             let modal = document.createElement("div");
             modal.classList.add("modal");
@@ -200,7 +204,7 @@ console.log(idProduitClique)
             modal.innerHTML = `
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <image src="${leProduitClique.image}">
+            <image src="${produit.image}">
             <p>Hello</p>
         </div>
     `;
@@ -215,7 +219,10 @@ console.log(idProduitClique)
                 modal.remove();
             });
 
-        }*/
+
+        } else { }
+
+
     });
 
 
