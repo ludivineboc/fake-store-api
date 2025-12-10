@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+}
+
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.flex-end{
+   justify-content: flex-end;
+}
+
+.gap-40{
+    gap: 10px;
+}
+.container{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+.bg{
+    background-color: red;
+}
+.bg2{
+    background-color: rgb(196, 107, 107);
+}
+.w15 {
+    width: 15%;
+}
+.w10{width: 
+    10%;}
+.w20{width: 20%;}
+.w30{width: 30%;}
+.w48{width: 48%;}
+.w70{
+    width: 70%;
+}
+.w80 {
+    width: 80%;
+}
+.w85 {
+    width: 85%;
+}
+a{
+    text-decoration: none;
+}
+.logo {
+     font-family: "Bebas Neue", sans-serif;
+     font-size: 30px;
+     color: black;
+}
+
+.div-input{
+    width: 25%;
+    /*background-color: rgb(215, 215, 215);*/
+    padding: 10px 10px;
+    border-radius: 10px;
+     border: solid 2px black;
+}
+
+.div-input input{
+    width: 90%;
+    /*background-color: rgb(215, 215, 215);*/
+    border: none;
+}
+
+header{
+   width: 90%;
+   margin: auto;
+   margin-bottom: 30px;
+   padding: 10px 0px;
+}
+
+.shop-btn{
+    border: none;
+    color: black;
+    font-size: 30px;
+    background-color: white;
+}
+
+.banner {
+    background-image: url("banner.png");
+    height: 300px;
+    border-radius: 20px;
+    background-size: cover;
+}
+
+.top-50{
+    margin-top: 50px;
+}
+.card {
+    background-color: #f3f3f3;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.card img {
+    height: 100px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.card h3{
+
+     font-family: "Bebas Neue", sans-serif;
+     font-size: 20px;
+}
+
+.btn-category{
+         font-family: "Bebas Neue", sans-serif;
+
+    width: 100%;
+    padding: 20px 5px;
+    margin-bottom: 10px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    border: none;
+
+}
+
+.btn-selected{
+    background-color: #9276DD;
+    color: white;
+}
+
+.prix{
+    background-color: black;
+    border-radius: 5px;
+    padding: 15px 10px;
+    width: fit-content;
+    color:white;
+}
+
