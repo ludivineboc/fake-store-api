@@ -166,3 +166,25 @@ header{
 
 .top-70{top: 70px;}
 .top-0{top: 0px;}
+
+
+.modal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 50vh;
+    left:50vw;
+    transform: translate(-50%, -50%);
+    background-color: #b9b9b961;
+}
+
+.modal-content{
+width: 80%;
+    background-color: red;
+    padding: 40px;
+    position: fixed;
+    top: 50vh;
+    left:50vw;
+    transform: translate(-50%, -50%);
+}
+

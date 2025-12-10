@@ -27,6 +27,15 @@ fetch('https://fakestoreapi.com/products')
         //fonction pour ma barre de recherche
         recherche(data)
 
+        let cards = document.querySelectorAll(".card")
+        cards.forEach(card => {
+            card.addEventListener("click", (e) => {
+                const id = card.dataset.id;
+                creerModal(id, data);
+            });
+        });
+
+
     });
 
 function creerCartes(tableauDeproduit) {
@@ -36,7 +45,8 @@ function creerCartes(tableauDeproduit) {
         document.getElementById("cards-container").innerHTML +=
             `
 
-            <div class="card w48 flex space-between">
+            <div class="card w48 flex space-between" data-id="${produit.id}">
+
                 <img src="${produit.image}" alt="" class="w20">
 
 
@@ -133,20 +143,80 @@ function afficheCarteTrier(btn, tableauTrie) {
 //role : afficher les carte si le mot tapé dans la barre de recherche sont présent dans le titre des produits
 // paramtere : le tableau de produit 
 //return : rien
-function recherche(tableauDeproduit){
-let searchInput = document.getElementById("searchInput");
+function recherche(tableauDeproduit) {
+    let searchInput = document.getElementById("searchInput");
 
-searchInput.addEventListener("input", (e) => {
-    let searchValue = e.target.value.toLowerCase();
+    searchInput.addEventListener("input", (e) => {
+        let searchValue = e.target.value.toLowerCase();
 
-    let results = tableauDeproduit.filter(produit =>
-        produit.title.toLowerCase().includes(searchValue)
-    );
-    console.log(results)
+        let results = tableauDeproduit.filter(produit =>
+            produit.title.toLowerCase().includes(searchValue)
+        );
+        console.log(results)
 
-    retirerClasseSelected(); 
-    creerCartes(results);
+        retirerClasseSelected();
+        creerCartes(results);
 
-});
+    });
 }
 
+//role : créer une modal en absolute 
+
+/*function creerModal(leProduitClique){
+
+   
+    document.querySelector("body").innerHTML += `
+    
+    <div class="modal">
+
+        <div class="modal-content">
+        <span class="close-btn">&times;</span>
+            <p> hello </p>
+        </div>
+       
+    </div>
+    `
+
+    // Cibler le bouton fermer
+let closeBtn = document.querySelector(".close-btn");
+closeBtn.addEventListener("click", () => {
+    document.querySelector(".modal").remove();
+});
+}*/
+
+function creerModal(idProduitClique, tableauDeproduit) {
+
+console.log(idProduitClique)
+
+    tableauDeproduit.forEach(produit => {
+        console.log(produit.id)
+
+        /*if(produit.id === idProduitClique) {
+            
+            // Créer un élément modal
+            let modal = document.createElement("div");
+            modal.classList.add("modal");
+
+            modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <image src="${leProduitClique.image}">
+            <p>Hello</p>
+        </div>
+    `;
+
+            // Ajouter au DOM
+            document.body.appendChild(modal);
+
+            // Cibler la croix
+            let closeBtn = modal.querySelector(".close-btn");
+
+            closeBtn.addEventListener("click", () => {
+                modal.remove();
+            });
+
+        }*/
+    });
+
+
+}
