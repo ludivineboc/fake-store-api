@@ -85,6 +85,7 @@ header{
    margin: auto;
    margin-bottom: 30px;
    padding: 10px 0px;
+   background-color: white;
 }
 
 .shop-btn{
@@ -111,6 +112,10 @@ header{
     margin-bottom: 30px;
 }
 
+.card:hover{
+    background-color: #ded2ff;
+}
+
 .card img {
     height: 100px;
     object-fit: cover;
@@ -124,15 +129,20 @@ header{
 }
 
 .btn-category{
-         font-family: "Bebas Neue", sans-serif;
-
+    font-family: "Bebas Neue", sans-serif;
     width: 100%;
     padding: 20px 5px;
     margin-bottom: 10px;
     background-color: #f3f3f3;
     border-radius: 5px;
     border: none;
+    font-size: 19px;
+}
 
+.btn-category:hover {
+    background-color: #ded2ff;
+    color: black;
+    transition: colore 3s;
 }
 
 .btn-selected{
@@ -148,3 +158,11 @@ header{
     color:white;
 }
 
+
+.sticky{
+    position: sticky;
+    left: 0;
+}
+
+.top-70{top: 70px;}
+.top-0{top: 0px;}

@@ -1,16 +1,40 @@
 fetch('https://fakestoreapi.com/products')
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
+        console.log(trierProduits(data));
 
-    console.log(data);
-    creerCartes(data);
-  });
+        //je créer toutes les cartes
+        creerCartes(data);
 
-function creerCartes(tableauDeproduit){
+        //je récupére les données trié par catégorie
+        let resultTrie = trierProduits(data)
+
+        //je cible tous mes boutons catégories
+        let btnMen = document.getElementById("menBtn")
+        let btnWoman = document.getElementById("womanBtn")
+        let btnElectronics = document.getElementById("elecBtn")
+        let btnJewelry = document.getElementById("jewelBtn")
+        let btnAll = document.getElementById("allBtn")
+
+        //le click de mon bouton "all" -> retire la classe selected des autres boutons, affiche toute els carte, ajoute la classe selected sur le bouton all
+        btnAll.addEventListener("click", (e) => { retirerClasseSelected(); creerCartes(data); btnAll.classList.toggle("btn-selected"); })
+        //trie et affiche les carte en fonction du bouton cliqué / togle la classe selected
+        btnMen.addEventListener("click", (e) => { afficheCarteTrier(btnMen, resultTrie.men) })
+        btnWoman.addEventListener("click", (e) => { afficheCarteTrier(btnWoman, resultTrie.woman) })
+        btnElectronics.addEventListener("click", (e) => { afficheCarteTrier(btnElectronics, resultTrie.electronics) })
+        btnJewelry.addEventListener("click", (e) => { afficheCarteTrier(btnJewelry, resultTrie.jewelery) })
+
+        //fonction pour ma barre de recherche
+        recherche(data)
+
+    });
+
+function creerCartes(tableauDeproduit) {
+    viderSection()
     tableauDeproduit.forEach(produit => {
 
-        document.getElementById("sec-card").innerHTML += 
-        `
+        document.getElementById("cards-container").innerHTML +=
+            `
 
             <div class="card w48 flex space-between">
                 <img src="${produit.image}" alt="" class="w20">
@@ -22,6 +46,10 @@ function creerCartes(tableauDeproduit){
                         <p>${produit.category}</p>
                         <div>★★★★</div>
                     </div>
+
+                    <div>
+
+                    </div>
                     <p class="prix w20">${produit.price}€</p>
                 </div>
             </div>
@@ -31,32 +59,94 @@ function creerCartes(tableauDeproduit){
     });
 }
 
-//role : afficher les cartes lorsqu'on clique sur une catégorie
-// : tableau de produits, le bouton cliqué 
-//return : rien 
+//role : tri les produits et créer des tableaux pour les 4 categories
+//parametre: tableau de produits
+//return : 4 tableaux 1 par catégorie
+function trierProduits(tableauDeproduit) {
 
-function filtrerCartes(tableauDeproduit){
+    let arrayMen = [];
+    let arrayWoman = [];
+    let arrayJewelery = [];
+    let arrayElectronics = [];
 
-    document.querySelectorAll(".btn-category").addEventListener("click", (e)=>{
-        if(e === "men's clothing"){
-            //function créer carte men
+    tableauDeproduit.forEach(produit => {
+        if (produit.category === "men's clothing") {
+            //ranger dans table men
+            arrayMen.push(produit)
+
         }
-        else if(e === "jewelery"){
-            //fucntion créer carte jewelery
-        }else if(e === "electronics"){
-
-        }else{
-            //function women
+        else if (produit.category === "jewelery") {
+            //ranger dans table jewelry
+            arrayJewelery.push(produit)
+        } else if (produit.category === "electronics") {
+            //ranger dans table electronics
+            arrayElectronics.push(produit)
+        } else {
+            //ranger dans table woman
+            arrayWoman.push(produit)
         }
-    })
+    });
+
+
+    return {
+        men: arrayMen,
+        woman: arrayWoman,
+        jewelery: arrayJewelery,
+        electronics: arrayElectronics
+    };
+
+
+
 }
 
+//role : retirer la classe selected des boutons catégories
+//parametre: rien
+//return : rien
+function retirerClasseSelected() {
+    let btns = document.querySelectorAll(".btn-category");
 
-/* categories : 
-men's clothing
-jewelery
-electronics
-women's clothing
+    btns.forEach(btn => {
+        btn.classList.remove("btn-selected");
+    });
 
+}
 
-*/ 
+//role : supprime les cartes qui se trouve dans la section 
+//parametre: rien
+//return : rien
+function viderSection() {
+    let sectionProduits = document.getElementById("cards-container")
+    sectionProduits.innerHTML = ""
+}
+
+//role : Vide la section + Affiche les cartes trier + retire la classe selected et là met sur le bouton qui viens d'êtres cliqué
+//parametre: tableau de produits
+//return : 4 tableaux 1 par catégorie
+function afficheCarteTrier(btn, tableauTrie) {
+    viderSection()
+    retirerClasseSelected()
+    console.log("ok")
+    btn.classList.toggle("btn-selected");
+    creerCartes(tableauTrie)
+}
+
+//role : afficher les carte si le mot tapé dans la barre de recherche sont présent dans le titre des produits
+// paramtere : le tableau de produit 
+//return : rien
+function recherche(tableauDeproduit){
+let searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", (e) => {
+    let searchValue = e.target.value.toLowerCase();
+
+    let results = tableauDeproduit.filter(produit =>
+        produit.title.toLowerCase().includes(searchValue)
+    );
+    console.log(results)
+
+    retirerClasseSelected(); 
+    creerCartes(results);
+
+});
+}
+

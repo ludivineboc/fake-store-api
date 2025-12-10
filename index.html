@@ -18,13 +18,13 @@
 
 <body>
 
-    <header class="flex space-between align-center">
+    <header class="flex space-between align-center sticky top-0">
         <a href="" class="logo">
             Shop.
         </a>
 
         <div class="div-input flex space-between align-center">
-            <input type="search" placeholder="Sweetshirt">
+            <input type="search" id="searchInput" placeholder="Rechercher un produit...">
             <i class="ph ph-magnifying-glass"></i>
         </div>
 
@@ -46,17 +46,20 @@
     <section class="container flex top-50 flex space-between">
 
         <!-- barre latéral -->
-        <div class="lateral-nav w15 ">
-            <button class="btn-category btn-selected"> All</button>
-
-            <button class="btn-category"> Men's cloting</button>
-            <button class="btn-category"> Women's cloting</button>
-
+         <nav class="lateral-nav w15 ">
+        <div class="sticky top-70">
+            <button class="btn-category btn-selected" id="allBtn"> All</button>
+            <button class="btn-category" id="menBtn"> Men's cloting</button>
+            <button class="btn-category" id="womanBtn"> Women's cloting</button>
+            <button class="btn-category" id="jewelBtn"> Jewelry</button>
+            <button class="btn-category" id="elecBtn"> Electronics</button>
         </div>
+         </nav>
+
 
 
         <!-- contaienr carte -->
-        <div class="cards-container flex space-between w80 align-center " id="sec-card">
+        <div  class="cards-container flex space-between w80 align-center " id="cards-container">
 
             <!-- Carte exemples -->
             <!-- 
